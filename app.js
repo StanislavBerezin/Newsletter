@@ -49,7 +49,12 @@ app.post('/signup', (req, res) => {
   request(options, (err, response, body) => {
     if (err) {
       res.redirect('/fail.html');
-    } 
+    } else {
+      if (response.statusCode === 200) {
+        res.redirect('/success.html');
+      } else {
+        res.redirect('/fail.html');
+      }
     }
   });
 });
