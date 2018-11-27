@@ -35,7 +35,24 @@ app.post('/signup', (req, res) => {
     ]
   };
 
+  const postData = JSON.stringify(data);
 
+  const options = {
+    url: 'https://<DC>.api.mailchimp.com/3.0/lists/<YOUR_LIST_ID>',
+    method: 'POST',
+    headers: {
+      Authorization: 'auth <YOUR_API_KEY>'
+    },
+    body: postData
+  };
+
+  request(options, (err, response, body) => {
+    if (err) {
+      res.redirect('/fail.html');
+    } 
+    }
+  });
+});
 
 const PORT = process.env.PORT || 5000;
 
